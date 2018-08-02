@@ -1,0 +1,251 @@
+This contribution is an attempt to speedup the development of domain layer in bottom to top model with FluentData. This means you already have the Database created and you need a quick way to write the Entity wrapers and common CURD operations. The goal of fluency is to provide T4 templates to generate a domain layer which has very minimal learning curve and very simple to use. At the moment Fluency supports the [url:Table Data Gateway|http://martinfowler.com/eaaCatalog/tableDataGateway.html] pattern which is very simple to understand and use.
+
+!! How to use Fluency Templates?
+
+The recommended way to use Fluency Template is by using *TextTransform.exe* tool. This is a command-line tool that you can use to transform a text template. When you call TextTransform.exe, you specify the name of a text template file as an argument. TextTransform.exe calls the text transformation engine and processes the text template. This tool accepts optional parameters in case your template requires some parameters which is the case with the template you will be using. *TextTransform.exe* is located in the following directory:
+
+_\Program Files\Common Files\Microsoft Shared\TextTemplating\10.0 _
+or
+ _\Program Files\Common Files\Microsoft Shared\TextTemplating\11.0 _
+
+depending upon which version of visual studio you have. Also depending upon if you are using 64bit OS you may need to look under Program Files(X86) for the above location.
+
+!! Adding new external tool
+First of all you need to locate the *TextTransform.exe* as explained above. For my install since I am using Visual Studio 2010(32bit) on 64bit windows the location of *TextTransform.exe* is following
+_C:\Program Files (x86)\Common Files\Microsoft Shared\TextTemplating\10.0\TextTransform.exe_
+
+Now we have to do the following steps in order to add a new external tool under Visual Studio Tools menu.
+
+# Copy *Fluency* folder from Contributions and move it under your Solution folder.
+# Open Visual Studio and go to *Tools -> External Tools* menu and click *Add* button. This will add a blank  external tool.
+# In Title textbox enter *Fluency* while in Command textbox enter the full path to *TextTransform.exe* which in my case is _C:\Program Files (x86)\Common Files\Microsoft Shared\TextTemplating\10.0\TextTransform.exe_
+# Now place following text in Arguments textbox 
+{{ 
+$(SolutionDir)\Fluency\TableDataGateway.tt -out  $(SolutionDir)/Entities.Generated.cs -a !!ns!MyDomain -a !!cs!Server=YOUR_SERVER_NAME;Database=MyDb;Trusted_Connection=true -a !!csn!MyDb 
+}} 
+** Here {{ $(SolutionDir)\Fluency\TableDataGateway.tt }} is the path to template under your solution folder. 
+** {{ -out  $(SolutionDir)/Entities.Generated.cs }} tells the path and name of generated file in your solution folder.
+** {{ -a !!ns!MyDomain }} tells the template about namespace for generated code where !!ns is parameter name and !MyDomain tells value which is MyDomain. 
+** {{ -a !!cs!Server=YOUR_SERVER_NAME;Database=MyDb;Trusted_Connection=true }} tells the database connection string from where template has to generate the code. 
+** Lastly {{ -a !!csn!MyDb }} tells the name of connection string in web.config which will be used by generated code when opening a database connection. In this case connection string name is MyDb you will replace this with what ever is yours.
+
+Now click *OK* button and new external tool will be added to your *Tools* menu. Finally open your Solution in Visual Studio and then go to *Tools* menu and click on *Fluency*. It will open a dialogue box just click on OK button and it will generate the code under you solutoin folder! Now that template is configured you can always regenerate your code in few clicks. 
+
+!! Understanding the generated code !!
+There will be two classes generated for every table in database. First one will be entity class which will contain fields corrosponding to Database table. The second will be Gateway class which will contain common method for CURD operations. Lets suppose we have a table called *Product* in Database with following schema
+
+{{
+        CREATE TABLE [dbo].[Product](
+	    [Id] [int] IDENTITY(1,1) NOT NULL,
+	    [Name] [nvarchar](256) NOT NULL,
+	    [Price] [decimal](18, 2) NOT NULL,
+	    [Sku] [nvarchar](256) NULL,
+	    [Description] [nvarchar](max) NULL,
+	    [ManufacturerId] [int] NULL,
+	    [CreatedOn] [datetime] NULL,
+	    [ModifiedOn] [datetime] NULL
+            CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([Id] ASC))
+}}
+The code generated for product table will consist of following two classes
+{{
+        /// <summary>
+        /// Product entity class
+        /// </summary>
+	public partial class Product    
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public decimal Price { get; set; }
+		public string Sku { get; set; }
+		public string Description { get; set; }
+		public int ManufacturerId { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
+	}
+
+        /// <summary>
+        /// Product gateway class
+        /// </summary>
+	public partial class ProductGateway
+	{
+		private static IDbContext Context()
+                {
+                            return new DbContext().ConnectionStringName("MyDb",
+                                    new SqlServerProvider());
+                }
+
+		public static Product Select(int id)
+		{
+			using(var context = Context())
+            		{
+                		return context.Sql(" SELECT * FROM Product WHERE Id = @id ")
+						.Parameter("id", id)
+                    				.QuerySingle<Product>();
+            		}
+		}
+
+		public static List<Product> SelectAll()
+        	{
+            		return SelectAll(string.Empty);
+        	}
+
+        	public static List<Product> SelectAll(string sortExpression)
+        	{
+            		return SelectAll(0, 0, sortExpression);
+        	}
+
+        	public static List<Product> SelectAll(int startRowIndex, int maximumRows, string sortExpression)
+        	{
+            		using (var context = Context())
+            		{
+                		var select = context.Select<Product>(" * ")
+                    			.From(" Product ");
+
+                		if (maximumRows > 0)
+                		{
+                    			if (startRowIndex == 0) 
+                        			startRowIndex = 1;
+
+                    			select.Paging(startRowIndex, maximumRows);
+                		}
+
+                		if (!string.IsNullOrEmpty(sortExpression))
+                    			select.OrderBy(sortExpression);
+
+                		return select.QueryMany();
+            		}
+        	}
+
+		public static int CountAll()
+        	{
+            		using (var context = Context())
+            		{
+                		return context.Sql(" SELECT COUNT(*) FROM Product ")
+                    			.QuerySingle<int>();
+            		}
+        	}
+
+		
+		public static List<Product> SelectByManufacturer(int manufacturerId)
+        	{
+            		return SelectByManufacturer(manufacturerId, string.Empty);
+        	}
+
+        	public static List<Product> SelectByManufacturer(int manufacturerId, string sortExpression)
+        	{
+            		return SelectByManufacturer(manufacturerId, 0, 0, sortExpression);
+        	}
+
+		public static List<Product> SelectByManufacturer(int manufacturerId, int startRowIndex, int maximumRows, string sortExpression)
+        	{
+            		using (var context = Context())
+            		{
+                		var select = context.Select<Product>(" * ")
+                    			.From(" Product ")
+					.Where(" ManufacturerId = @manufacturerid ")
+					.Parameter("manufacturerid", manufacturerId);
+
+                		if (maximumRows > 0)
+                		{
+                    			if (startRowIndex == 0) 
+                        			startRowIndex = 1;
+
+                    			select.Paging(startRowIndex, maximumRows);
+                		}
+
+                		if (!string.IsNullOrEmpty(sortExpression))
+                    			select.OrderBy(sortExpression);
+
+                		return select.QueryMany();
+            		}
+        	}
+
+		public static int CountByManufacturer(int manufacturerId)
+        	{
+            		using (var context = Context())
+            		{
+                		return context.Sql(" SELECT COUNT(*) FROM Product WHERE ManufacturerId = @manufacturerid")
+					.Parameter("manufacturerid", manufacturerId)
+		                    .QuerySingle<int>();
+            		}
+        	}
+		
+		public static bool Insert(Product product) 
+        	{
+            		using (var context = Context())
+            		{
+                		int id = context.Insert<Product>("Product", product)
+                    			.AutoMap(x => x.Id)
+                    			.ExecuteReturnLastId<int>();
+
+                		product.Id = id;
+                		return id > 0;
+            		}
+        	}
+		public static bool Update(Product product)
+        	{
+            		using (var context = Context())
+            		{
+                		return context.Update<Product>("Product", product)
+                    		.AutoMap(x => x.Id)
+                    		.Execute() > 0;
+            		}
+        	}
+
+		public static bool Delete(Product product) 
+        	{
+            		return Delete(product.Id);
+        	}
+
+        	public static bool Delete(int id)
+        	{
+            		using (var context = Context())
+            		{
+                		return context.Sql(" DELETE FROM Product WHERE Id = @id ")
+                    		.Parameter("id", id)
+                    		.Execute() > 0;
+            		}
+        	}
+        }
+}}
+*Select single product by Id*
+{{ 
+        Product product = ProductGateway.Select(103); 
+}}
+*Select all products*
+{{
+        List<Product> products = ProductGateway.SelectAll();
+}}
+*Count all products*
+{{
+        int count = ProductGateway.CountAll();
+}}
+*Select all products with paging*
+{{
+        // LOAD FIRST 20 PRODUCTS ORDER BY ID
+        List<Product> products = ProductGateway.SelectAll(1, 20, "Id ASC");
+}}
+*Select all products for manufacturer foreign key*
+{{
+        // LOAD FIRST 20 PRODUCTS ORDER BY NAME FOR MANUFACTURER ID 91
+       List<Product> products = ProductGateway.SelectByManufacturer(91,1, 20, "Name ASC");
+}}
+*Insert new product*
+{{
+            Product product = new Product() { Name = "New Product", Price = 111, Sku = "SKU-111", Description = "None" };
+            ProductGateway.Insert(product);
+            
+            // IF PRIMARYKEY IS IDENTITY THEN IT WILL BE SET BACK TO THE OBJECT
+            Console.Writeline(string.Format("Product Id = {0}", product.Id));
+}}
+*Update existing product*
+{{
+        Product product = ProductGateway.Select(103); 
+        product.Price = 200;
+        ProductGateway.Update(product);
+}}
+*Delete existing product*
+{{
+        Product product = ProductGateway.Select(103); 
+        ProductGateway.Delete(product);
+}}
