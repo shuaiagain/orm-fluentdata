@@ -1,0 +1,9 @@
+Debug
+bin
+/FluentData/sourceCode/sourceCode/Source/v4/*.suo
+Microsoft.AspNet.Mvc.4.0.30506.0
+net40
+Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0
+/FluentData/sourceCode/sourceCode/Source/v4/packages/*
+/FluentData/sourceCode/sourceCode/Source/v4/FluentData.Web/Web.Release.config
+/FluentData/sourceCode/sourceCode/Source/v4/FluentData.Web/Web.Debug.config

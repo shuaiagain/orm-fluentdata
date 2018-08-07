@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData", "FluentData\FluentData.csproj", "{B5AE821B-7728-49B3-9119-3BBC4C8E58E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D8DF561-3D0D-420E-AFF4-4FC88848D632}"
@@ -16,28 +18,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.IntegrationTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.SingleSourceFile", "FluentData.SingleSourceFile\FluentData.SingleSourceFile.csproj", "{1CDA8F56-73D9-4C2A-9D0D-EB6D9C2D53FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Web", "FluentData.Web\FluentData.Web.csproj", "{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Business", "FluentData.Business\FluentData.Business.csproj", "{F043907D-F704-4BDC-B583-D28609B1EB10}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs17
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = FluentData\\FluentData.csproj
-		SccProjectName1 = FluentData
-		SccLocalPath1 = FluentData
-		SccProjectUniqueName2 = FluentData.UnitTests\\FluentData.UnitTests.csproj
-		SccProjectName2 = FluentData.UnitTests
-		SccLocalPath2 = FluentData.UnitTests
-		SccProjectUniqueName3 = FluentData.IntegrationTests\\FluentData.IntegrationTests.csproj
-		SccProjectName3 = FluentData.IntegrationTests
-		SccLocalPath3 = FluentData.IntegrationTests
-		SccProjectUniqueName4 = FluentData.SingleSourceFile\\FluentData.SingleSourceFile.csproj
-		SccProjectName4 = FluentData.SingleSourceFile
-		SccLocalPath4 = FluentData.SingleSourceFile
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = FluentData.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -75,8 +60,23 @@ Global
 		{1CDA8F56-73D9-4C2A-9D0D-EB6D9C2D53FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CDA8F56-73D9-4C2A-9D0D-EB6D9C2D53FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CDA8F56-73D9-4C2A-9D0D-EB6D9C2D53FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED0D31D-6233-455E-A736-F9EBF19B1BFB}.Release|x64.ActiveCfg = Release|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = FluentData.vsmdi
 	EndGlobalSection
 EndGlobal
