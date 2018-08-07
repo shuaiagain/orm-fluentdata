@@ -1,0 +1,33 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Microsoft YaHei","SimHei",sans-serif;
+    background: #f6f6f6;
+}
+
+.header {
+    height: 36px;
+    width: 100%;
+    color: #fff;
+    background: #000;
+}
+
+    .header .toolbar {
+        height: 36px;
+    }
+
+.toolbar .login {
+    float: right;
+    height: 36px;
+    line-height: 36px;
+    margin-right: 20px;
+}
+
+.login .login-btn {
+    cursor:pointer;
+}
+
