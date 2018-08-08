@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\DLL\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -112,6 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,10 +167,6 @@
     <ProjectReference Include="..\FluentData.Business\FluentData.Business.csproj">
       <Project>{f043907d-f704-4bdc-b583-d28609b1eb10}</Project>
       <Name>FluentData.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FluentData\FluentData.csproj">
-      <Project>{b5ae821b-7728-49b3-9119-3bbc4c8e58e9}</Project>
-      <Name>FluentData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

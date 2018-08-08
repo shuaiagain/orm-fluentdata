@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Web", "FluentDat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Business", "FluentData.Business\FluentData.Business.csproj", "{F043907D-F704-4BDC-B583-D28609B1EB10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knowledge", "Knowledge\Knowledge.csproj", "{C1B14737-AF74-4821-AA68-98FA092F9728}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,12 @@ Global
 		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F043907D-F704-4BDC-B583-D28609B1EB10}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
