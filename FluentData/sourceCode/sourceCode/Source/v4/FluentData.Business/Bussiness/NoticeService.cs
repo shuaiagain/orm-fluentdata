@@ -46,7 +46,7 @@ namespace FluentData.Business.Service
             {
 
                 //获取指定页数据
-                List<NoticeVM> list = dbContext.Sql(sql + pageSql).QueryMany<NoticeVM,List<NoticeVM>>((no,reader) =>
+                List<NoticeVM> list = dbContext.Sql(sql + pageSql).QueryMany<NoticeVM, List<NoticeVM>>((no, reader) =>
                 {
                     var noVM = new NoticeVM()
                     {
