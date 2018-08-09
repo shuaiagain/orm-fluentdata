@@ -1,19 +1,26 @@
 ﻿@using FluentData.Business.ViewModels
-@model PageVM<NoticeVM>
+@using FluentData.Business.Utils
+@model PageVM<ArticleVM>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="notice-index">
-    
-    <div>
-        <table id="noticeTable" class="list-table" cellpadding="0" cellspacing="0">
+<div class="notice">
+    <div class="notice-content">
+        <div class="content-search">
+            <input class="search-key" placeholder="请输入标题" /><a class="search-btn">搜索</a>
+        </div>
+        <table id="noticeTable" class="table-list" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <td style="width:25%;">ID</td>
-                    <td style="width:25%;">通知标题</td>
-                    <td>InputerID</td>
+                    <td class="textCenter" style="width:25%;">标题</td>
+                    <td class="textCenter" style="width:25%;">内容</td>
+                    <td class="textCenter" style="width:8%;">附件</td>
+                    <td class="textCenter" style="width:8%;">发布日期</td>
+                    <td class="textCenter" style="width:8%;">评论总数</td>
+                    <td class="textCenter" style="width:8%;">赞总数</td>
+                    <td class="textCenter" style="width:8%;">踩总数</td>
+                    <td class="textCenter" style="width:150px;">操作</td>
                 </tr>
             </thead>
             <tbody>
@@ -22,25 +29,38 @@
                     foreach (var item in Model.Data)
                     {
 
-                        <tr data-id="@(item.ID)">
-                            <td>@(item.ID)</td>
-                            <td class="textLeft ellipsis">
-                                <a title="@(item.Title)" target="_blank" href="@Url.Action("ViewNotice", "Home", new { noticeId = item.ID })">@(item.Title)</a>
-                            </td>
-                            <td>@(item.InputerID)</td>
-                        </tr>
+                <tr data-id="@(item.ID)">
+                    <td class="textLeft ellipsis">
+                        <a title="@(item.Title)" target="_blank" href="@Url.Action("ViewNotice", "Home", new { noticeId = item.ID })">@(item.Title)</a>
+                    </td>
+                    <td class="textLeft ellipsis">
+                        <a title="@(item.Content)">@(item.Content)</a>
+                    </td>
+                    <td class="textCenter">
+                        @if (!string.IsNullOrEmpty(item.AttachmentUrl))
+                                {
+                                <a class="iconfont icon-attachment" title="附件"></a>
+                                }
+                    </td>
+                    <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                    <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                    <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                    <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                    <td class="textCenter nowrap">
+                        <a class="btn-operate">编辑</a><a class="btn-operate">删除</a>
+                    </td>
+                </tr>
                     }
                 }
                 else
                 {
-                    <tr class="no-data">
-                        <td colspan="2">
-                            <span>暂无数据</span>
-                        </td>
-                    </tr>
+                <tr class="no-data">
+                    <td colspan="8">
+                        <span>暂无数据</span>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
-
 </div>

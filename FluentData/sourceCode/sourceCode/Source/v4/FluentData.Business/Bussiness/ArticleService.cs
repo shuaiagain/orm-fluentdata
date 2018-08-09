@@ -9,14 +9,14 @@ using FluentData.Business.Utils;
 
 namespace FluentData.Business.Service
 {
-    public class NoticeService
+    public class ArticleService
     {
         #region 获取通知列表(分页)
         /// <summary>
         /// 获取通知列表
         /// </summary>
         /// <returns></returns>
-        public PageVM<NoticeVM> GetNoticeListPage(NoticeQuery query)
+        public PageVM<ArticleVM> GetNoticeListPage(NoticeQuery query)
         {
 
             if (!query.PageIndex.HasValue)
@@ -24,7 +24,7 @@ namespace FluentData.Business.Service
             if (!query.PageSize.HasValue)
                 query.PageSize = 10;
 
-            string sql = "select * from notice n where 1=1 ";
+            string sql = "select * from article n where 1=1 ";
             if (!string.IsNullOrEmpty(query.KeyWord))
             {
                 sql += string.Format(" and n.title like '%{0}%' ", query.KeyWord);
@@ -46,38 +46,26 @@ namespace FluentData.Business.Service
             {
 
                 //获取指定页数据
-                List<NoticeVM> list = dbContext.Sql(sql + pageSql).QueryMany<NoticeVM>((NoticeVM no, IDataReader reader) =>
+                List<ArticleVM> list = dbContext.Sql(sql + pageSql).QueryMany<ArticleVM>((ArticleVM art, IDataReader reader) =>
                 {
-                    no.ID = reader.GetInt32("ID");
-                    no.Title = reader.GetString("Title");
-                    no.InputerID = reader.GetInt32("InputerID");
+                    art.ID = reader.GetInt32("ID");
+                    art.Title = reader.GetString("Title");
+                    art.Content = reader.GetString("Content");
+                    art.Inputer = reader.GetString("Inputer");
+                    var date = reader.GetDateTime("InputTime");
+                    art.InputTime = reader.GetDateTime("InputTime");
                 });
 
-                //list.ForEach(item =>
-                //{
-                //    if (!string.IsNullOrEmpty(item.AttachmentUrl))
-                //    {
-                //        var arr = HttpUtility.UrlDecode(item.AttachmentUrl).Split('>');
-                //        item.FilePath = arr.Length > 0 ? arr[0] : string.Empty;
-                //        item.FileName = arr.Length > 1 ? arr[1] : string.Empty;
-                //    }
-                //    else
-                //    {
-                //        item.FilePath = string.Empty;
-                //        item.FileName = string.Empty;
-                //    }
-                //});
-
                 //获取数据总数
-                //int totalCount = dbContext.Sql(sql).Query().Count;
+                int totalCount = dbContext.Sql(sql).QueryMany<int>().Count;
                 ////总页数
-                //double totalPages = ((double)totalCount / query.PageSize.Value);
+                double totalPages = ((double)totalCount / query.PageSize.Value);
 
-                PageVM<NoticeVM> pageVM = new PageVM<NoticeVM>();
+                PageVM<ArticleVM> pageVM = new PageVM<ArticleVM>();
                 pageVM.Data = list;
-                //pageVM.TotalCount = totalCount;
-                //pageVM.TotalPages = (int)Math.Ceiling(totalPages);
-                //pageVM.PageIndex = query.PageIndex;
+                pageVM.TotalCount = totalCount;
+                pageVM.TotalPages = (int)Math.Ceiling(totalPages);
+                pageVM.PageIndex = query.PageIndex;
 
                 return pageVM;
             }

@@ -6,24 +6,24 @@ using System.Text;
 namespace FluentData.Business.ViewModels
 {
     /// <summary>
-    /// 
+    /// 文章表
     /// </summary>
-    public class NoticeVM
+    public class ArticleVM
     {
         public int? ID { get; set; }
 
         /// <summary>
-        /// 通知标题
+        /// 文章标题
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// 通知内容
+        /// 内容
         /// </summary>
         public string Content { get; set; }
 
         /// <summary>
-        /// 通知附件Url
+        /// 附件Url
         /// </summary>
         public string AttachmentUrl { get; set; }
 

@@ -44,13 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bussiness\NoticeService.cs" />
+    <Compile Include="Bussiness\ArticleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="Query\NoticeQuery.cs" />
     <Compile Include="Query\PageQuery.cs" />
     <Compile Include="Utils\ConnectionUtil.cs" />
-    <Compile Include="ViewModels\NoticeVM.cs" />
+    <Compile Include="Utils\TypeExt.cs" />
+    <Compile Include="ViewModels\ArticleVM.cs" />
     <Compile Include="ViewModels\PageVM.cs" />
   </ItemGroup>
   <ItemGroup>
