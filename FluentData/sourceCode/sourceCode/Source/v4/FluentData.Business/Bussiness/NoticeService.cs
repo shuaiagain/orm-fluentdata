@@ -46,28 +46,27 @@ namespace FluentData.Business.Service
             {
 
                 //获取指定页数据
-                List<NoticeVM> list = dbContext.Sql(sql + pageSql).QueryMany<NoticeVM, List<NoticeVM>>((no, reader) =>
+                List<NoticeVM> list = dbContext.Sql(sql + pageSql).QueryMany<NoticeVM>((NoticeVM no, IDataReader reader) =>
                 {
-                    var noVM = new NoticeVM()
-                    {
-                        ID = reader.ID
-                    };
+                    no.ID = reader.GetInt32("ID");
+                    no.Title = reader.GetString("Title");
+                    no.InputerID = reader.GetInt32("InputerID");
                 });
 
-                list.ForEach(item =>
-                {
-                    if (!string.IsNullOrEmpty(item.AttachmentUrl))
-                    {
-                        var arr = HttpUtility.UrlDecode(item.AttachmentUrl).Split('>');
-                        item.FilePath = arr.Length > 0 ? arr[0] : string.Empty;
-                        item.FileName = arr.Length > 1 ? arr[1] : string.Empty;
-                    }
-                    else
-                    {
-                        item.FilePath = string.Empty;
-                        item.FileName = string.Empty;
-                    }
-                });
+                //list.ForEach(item =>
+                //{
+                //    if (!string.IsNullOrEmpty(item.AttachmentUrl))
+                //    {
+                //        var arr = HttpUtility.UrlDecode(item.AttachmentUrl).Split('>');
+                //        item.FilePath = arr.Length > 0 ? arr[0] : string.Empty;
+                //        item.FileName = arr.Length > 1 ? arr[1] : string.Empty;
+                //    }
+                //    else
+                //    {
+                //        item.FilePath = string.Empty;
+                //        item.FileName = string.Empty;
+                //    }
+                //});
 
                 //获取数据总数
                 //int totalCount = dbContext.Sql(sql).Query().Count;

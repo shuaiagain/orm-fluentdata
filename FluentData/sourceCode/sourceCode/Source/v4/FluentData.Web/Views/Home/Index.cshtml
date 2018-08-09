@@ -1,6 +1,46 @@
-﻿@{
+﻿@using FluentData.Business.ViewModels
+@model PageVM<NoticeVM>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="notice-index">
+    
+    <div>
+        <table id="noticeTable" class="list-table" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td style="width:25%;">ID</td>
+                    <td style="width:25%;">通知标题</td>
+                    <td>InputerID</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Data != null && Model.Data.Count > 0)
+                {
+                    foreach (var item in Model.Data)
+                    {
+
+                        <tr data-id="@(item.ID)">
+                            <td>@(item.ID)</td>
+                            <td class="textLeft ellipsis">
+                                <a title="@(item.Title)" target="_blank" href="@Url.Action("ViewNotice", "Home", new { noticeId = item.ID })">@(item.Title)</a>
+                            </td>
+                            <td>@(item.InputerID)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="no-data">
+                        <td colspan="2">
+                            <span>暂无数据</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
