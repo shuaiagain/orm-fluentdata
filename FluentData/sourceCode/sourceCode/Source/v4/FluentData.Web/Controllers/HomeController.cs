@@ -14,10 +14,8 @@ namespace FluentData.Web.Controllers
 
         public ActionResult Index()
         {
-
-            PageVM<ArticleVM> data = new ArticleService().GetNoticeListPage(new NoticeQuery());
+            PageVM<ArticleVM> data = new ArticleService().GetNoticeListPage(new ArticleQuery());
             return View(data);
-
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FluentData.Business.ViewModels
 {
-    public class NoticeQuery : PageQuery
+    public class ArticleQuery : PageQuery
     {
         /// <summary>
         /// 开始日期

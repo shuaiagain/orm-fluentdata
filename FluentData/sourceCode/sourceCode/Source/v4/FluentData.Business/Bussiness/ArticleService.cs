@@ -16,7 +16,7 @@ namespace FluentData.Business.Service
         /// 获取通知列表
         /// </summary>
         /// <returns></returns>
-        public PageVM<ArticleVM> GetNoticeListPage(NoticeQuery query)
+        public PageVM<ArticleVM> GetNoticeListPage(ArticleQuery query)
         {
 
             if (!query.PageIndex.HasValue)
