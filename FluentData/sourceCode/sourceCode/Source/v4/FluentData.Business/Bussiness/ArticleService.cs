@@ -16,13 +16,12 @@ namespace FluentData.Business.Service
         /// 获取通知列表
         /// </summary>
         /// <returns></returns>
-        public PageVM<ArticleVM> GetNoticeListPage(ArticleQuery query)
+        public PageVM<ArticleVM> GetArticlePageList(ArticleQuery query)
         {
-
             if (!query.PageIndex.HasValue)
                 query.PageIndex = 1;
             if (!query.PageSize.HasValue)
-                query.PageSize = 10;
+                query.PageSize = 8;
 
             string sql = "select * from article n where 1=1 ";
             if (!string.IsNullOrEmpty(query.KeyWord))
@@ -58,7 +57,7 @@ namespace FluentData.Business.Service
 
                 //获取数据总数
                 int totalCount = dbContext.Sql(sql).QueryMany<int>().Count;
-                ////总页数
+                //总页数
                 double totalPages = ((double)totalCount / query.PageSize.Value);
 
                 PageVM<ArticleVM> pageVM = new PageVM<ArticleVM>();

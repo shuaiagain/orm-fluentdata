@@ -26,3 +26,10 @@ api接口
 getPageCount()			无				获取总页数
 setPageCount(page)		page：页数		设置总页数
 getCurrent()			无				获取当前页
+
+
+### 插件地址-github
+https://github.com/Maxiaoxiang/jQuery-plugins
+
+### 插件使用demo
+http://www.jq22.com/yanshi5697
