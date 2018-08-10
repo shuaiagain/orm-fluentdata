@@ -157,11 +157,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_layoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\iconfont\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Content\js\layout\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
