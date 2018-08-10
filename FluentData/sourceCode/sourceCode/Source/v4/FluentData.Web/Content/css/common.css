@@ -40,6 +40,7 @@ a {
     padding: 0px 8px;
     margin-right: 5px;
     cursor: pointer;
+    font-size: 14px;
     /*border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -52,6 +53,21 @@ a {
         color: #fff;
     }
 
+.btn-add {
+    border: 1px solid #c8c8c8;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+    .btn-add:hover {
+        border: 1px solid #3faeef;
+    }
 /*表格*/
 .table-list {
     table-layout: fixed;
@@ -82,3 +98,7 @@ a {
         .table-list tbody tr td:first-child {
             padding-left: 10px;
         }
+
+.last-td {
+    font-size: 0px;
+}

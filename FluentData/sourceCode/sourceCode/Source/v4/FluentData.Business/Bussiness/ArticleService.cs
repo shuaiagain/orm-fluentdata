@@ -51,8 +51,9 @@ namespace FluentData.Business.Service
                     art.Title = reader.GetString("Title");
                     art.Content = reader.GetString("Content");
                     art.Inputer = reader.GetString("Inputer");
-                    var date = reader.GetDateTime("InputTime");
                     art.InputTime = reader.GetDateTime("InputTime");
+                    art.UpdateTime = reader.GetDateTime("UpdateTime");
+                    art.UpdateTimeStr = reader.GetDateTime("UpdateTime").ToString("yyyy-MM-dd");
                 });
 
                 //获取数据总数
