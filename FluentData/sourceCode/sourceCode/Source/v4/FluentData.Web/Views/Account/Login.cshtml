@@ -1,12 +1,75 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_layoutLogin.cshtml";
 }
 
 <div class="login">
-
+    <div class="login-head">
+        <span>登录</span>
+    </div>
+    <div class="login-content">
+        <div class="content-name">
+            <span>用户名</span>
+            <input />
+        </div>
+        <div class="content-pwd">
+            <span>密&emsp;码</span>
+            <input />
+        </div>
+    </div>
 </div>
+
 <script type="text/javascript">
     $(function () {
 
+        var options = {
+            title: false,
+            type: 1,
+            skin: '',
+            area: ['360px', '200px'],
+            closeBtn: false,
+            shade: 0.3,
+            offset: ['100px'],
+            move: false,
+            content:$('.login'),
+            btn: ['登 录','取 消'],
+            yes: function (index, layero) {
+
+                var saveResponseUrl = $('input[name="saveResponseUrl"]').val();
+                var rpParams = {
+                    LoginName: '',
+                    Passwrod: ''
+                };
+
+                if ($.trim(rpParams.LoginName) == '') {
+                    alert('用户名不能为空');
+                    return false;
+                }
+
+                if ($.trim(rpParams.Passwrod) == '') {
+                    alert('密码不能为空');
+                    return false;
+                }
+
+                $.post(saveResponseUrl, rpParams, function (data) {
+
+                    if (data.Code == 200) {
+
+                        $('.response-val').data('id', data.Data.ID);
+                        $('.response-val').data('status', data.Data.Status);
+                        $('.response-val').text(data.Data.StatusText);
+
+                        layer.close(index);
+                    } else {
+                        alert(data.Msg);
+                    }
+                });
+            },
+            success: function (layero, index) {
+                //按钮居中
+                layero.find('.layui-layer-btn').css('text-align', 'center');
+            }
+        };
+
+        layer.open(options);
     });
 </script>

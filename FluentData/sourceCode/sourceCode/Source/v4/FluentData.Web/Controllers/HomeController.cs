@@ -9,7 +9,7 @@ using FluentData.Business.ViewModels;
 
 namespace FluentData.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         #region Index
