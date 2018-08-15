@@ -41,7 +41,7 @@ namespace FluentData.Business.Service
 
             sql += " order by n.UpdateTime DESC,n.ID DESC ";
             string pageSql = string.Format(" Limit {0},{1}", (query.PageIndex - 1) * query.PageSize, query.PageSize);
-            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connWXB, new MySqlProvider()))
+            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connFluentData, new MySqlProvider()))
             {
 
                 //获取指定页数据

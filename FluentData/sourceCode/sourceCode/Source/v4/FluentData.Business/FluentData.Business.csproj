@@ -45,14 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bussiness\ArticleService.cs" />
+    <Compile Include="Bussiness\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="Query\ArticleQuery.cs" />
     <Compile Include="Query\PageQuery.cs" />
     <Compile Include="Utils\ConnectionUtil.cs" />
+    <Compile Include="Utils\MD5Util.cs" />
     <Compile Include="Utils\TypeExt.cs" />
     <Compile Include="ViewModels\ArticleVM.cs" />
     <Compile Include="ViewModels\PageVM.cs" />
+    <Compile Include="ViewModels\UserVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FluentData\FluentData.csproj">

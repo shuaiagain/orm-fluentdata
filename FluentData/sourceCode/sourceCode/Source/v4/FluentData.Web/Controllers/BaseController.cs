@@ -15,21 +15,22 @@ namespace FluentData.Web.Controllers
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
 
-            if (filterContext.HttpContext.Request.IsAuthenticated)
+            if (!filterContext.HttpContext.Request.IsAuthenticated)
             {
-                filterContext.Result = RedirectToAction("Login", "Account");
+                filterContext.Result = RedirectToAction("login", "account");
                 return;
             }
 
-            var cookie = filterContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpCookie cookie = filterContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie == null)
             {
                 filterContext.Result = RedirectToAction("Login", "Account");
                 return;
             }
 
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
 
+            base.OnAuthorization(filterContext);
         }
     }
 }

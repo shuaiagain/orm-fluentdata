@@ -9,7 +9,7 @@ namespace FluentData.Business.Utils
 {
     public class ConnectionUtil
     {
-        public static readonly string connWXB = ConfigurationManager.ConnectionStrings["connWXB"].Name;
+        public static readonly string connFluentData = ConfigurationManager.ConnectionStrings["connFluentData"].Name;
         //public static readonly string connCMS = ConfigurationManager.ConnectionStrings["connCMS"].Name;
     }
 }

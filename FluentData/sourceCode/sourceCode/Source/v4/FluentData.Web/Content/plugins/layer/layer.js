@@ -372,14 +372,14 @@ Class.pt.auto = function(index){
     }
     layero.outerWidth() > config.maxWidth && layero.width(config.maxWidth);
   }
-  debugger;
+ 
   var area = [layero.innerWidth(), layero.innerHeight()]
   ,titHeight = layero.find(doms[1]).outerHeight() || 0
   ,btnHeight = layero.find('.'+doms[6]).outerHeight() || 0
   ,setHeight = function(elem){
     elem = layero.find(elem);
     elem.height(area[1] - titHeight - btnHeight - 2 * (parseFloat(elem.css('padding-top')) | 0));
-      debugger
+     
   };
 
   switch(config.type){
