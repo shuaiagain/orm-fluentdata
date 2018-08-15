@@ -89,16 +89,19 @@ namespace FluentData.Web.Controllers
         public void Logout()
         {
 
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "")
-            {
-                HttpOnly = true,
-                Domain = FormsAuthentication.CookieDomain,
-                Secure = FormsAuthentication.RequireSSL,
-                Path = FormsAuthentication.FormsCookiePath,
-                Expires = DateTime.Now.AddDays(-1)
-            };
+            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "")
+            //{
+            //    HttpOnly = true,
+            //    Domain = FormsAuthentication.CookieDomain,
+            //    Secure = FormsAuthentication.RequireSSL,
+            //    Path = FormsAuthentication.FormsCookiePath,
+            //    Expires = DateTime.Now.AddDays(-1)
+            //};
 
-            HttpContext.Response.Cookies.Add(cookie);
+            //HttpContext.Response.Cookies.Add(cookie);
+
+            HttpContext.Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+
         }
         #endregion
 
