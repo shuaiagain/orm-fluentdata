@@ -29,13 +29,23 @@ namespace FluentData.Web.Controllers
             }
 
             FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-
-            base.OnAuthorization(filterContext);
         }
 
         public MyFormsAuthentication UserData
         {
-            
+            get
+            {
+                if (Request.IsAuthenticated && this.User != null)
+                {
+                    MyFormPrincipal principal = this.User as MyFormPrincipal;
+                    if (principal != null && principal.UserData != null)
+                    {
+                        return principal.UserData;
+                    }
+                }
+
+                return null;
+            }
         }
     }
 }

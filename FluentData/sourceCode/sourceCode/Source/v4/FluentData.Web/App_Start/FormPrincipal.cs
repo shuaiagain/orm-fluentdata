@@ -17,6 +17,8 @@ namespace FluentData.Web
         {
             return false;
         }
+
+        public MyFormsAuthentication UserData { get; set; }
     }
 
     public class MyFormsAuthentication
