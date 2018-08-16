@@ -24,7 +24,6 @@ body {
     }
 
 .toolbar .login {
-    float: right;
     height: 36px;
     line-height: 36px;
     margin-right: 20px;
@@ -34,6 +33,46 @@ body {
         cursor: pointer;
         color: #fff;
     }
+
+.header .toolbar .userInfo {
+    position: relative;
+}
+
+    .header .toolbar .userInfo .userInfo-name {
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        color: #fff;
+        padding: 0px 10px;
+    }
+
+        .header .toolbar .userInfo .userInfo-name:hover {
+            background: #9a9a9a;
+            cursor: pointer;
+        }
+
+    .header .toolbar .userInfo .userInfo-other {
+        position: absolute;
+        background: #000;
+        /*display: inline-block;*/
+        list-style: none;
+        width: 62px;
+        text-align: center;
+        display: none;
+    }
+
+        .header .toolbar .userInfo .userInfo-other a {
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            width: 100%;
+            color: #fff;
+        }
+
+            .header .toolbar .userInfo .userInfo-other a:hover {
+                background: #9a9a9a;
+                cursor: pointer;
+            }
 
 .main .main-wrap {
     width: 85%;

@@ -67,7 +67,10 @@ namespace FluentData.Web.Controllers
             //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(user.LoginName, false, 30);
             string encryptTicket = FormsAuthentication.Encrypt(ticket);
 
-            HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptTicket) { Expires = DateTime.Now.AddMinutes(2) };
+            HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptTicket)
+            {
+                Expires = DateTime.Now.AddMinutes(5)
+            };
             System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
 
             #endregion
@@ -81,27 +84,80 @@ namespace FluentData.Web.Controllers
         }
         #endregion
 
+        #region 登录
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Login(UserVM user)
+        {
+            if (user == null) return Json(new
+            {
+                Code = -400,
+                Msg = "参数不能为空",
+                Data = ""
+            });
+
+            if (string.IsNullOrEmpty(user.LoginName) || string.IsNullOrEmpty(user.Password))
+            {
+                return Json(new
+                {
+                    Code = -400,
+                    Msg = "用户名或密码不能为空",
+                    Data = ""
+                });
+            }
+
+            UserService userSV = new UserService();
+
+            user.InputTime = DateTime.Now;
+            user = userSV.Login(user);
+            if (user == null || !user.ID.HasValue)
+            {
+                return Json(new
+                {
+                    Code = -200,
+                    Msg = "用户不存在",
+                    Data = ""
+                });
+            }
+
+            #region 添加登录cookie
+
+            //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.LoginName, DateTime.Now, DateTime.Now.AddDays(1), false, JsonConvert.SerializeObject(user));
+            //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(user.LoginName, false, 30);
+            //string encryptTicket = FormsAuthentication.Encrypt(ticket);
+
+            //HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptTicket)
+            //{
+            //    Expires = DateTime.Now.AddMinutes(5)
+            //};
+            //System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+
+            MyFormsAuthentication.SetAuthCookie(user.LoginName, new MyFormsAuthentication() { UserID = user.ID, UserName = user.LoginName }, false);
+
+            #endregion
+
+            return Json(new
+            {
+                Code = 200,
+                Msg = "登录成功",
+                Data = user
+            });
+        }
+        #endregion
+
         #region 退出
         /// <summary>
         /// 退出
         /// </summary>
         /// <returns></returns>
-        public void Logout()
+        public ActionResult Logout()
         {
-
-            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "")
-            //{
-            //    HttpOnly = true,
-            //    Domain = FormsAuthentication.CookieDomain,
-            //    Secure = FormsAuthentication.RequireSSL,
-            //    Path = FormsAuthentication.FormsCookiePath,
-            //    Expires = DateTime.Now.AddDays(-1)
-            //};
-
-            //HttpContext.Response.Cookies.Add(cookie);
-
-            HttpContext.Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
-
+            MyFormsAuthentication.RemoveAuthCookie();
+            return RedirectToAction("Login", "Account");
         }
         #endregion
 

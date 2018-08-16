@@ -53,5 +53,28 @@ namespace FluentData.Business.Service
         }
         #endregion
 
+        #region 登录
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public UserVM Login(UserVM user)
+        {
+            if (user == null) return null;
+            if (string.IsNullOrEmpty(user.LoginName) || string.IsNullOrEmpty(user.Password)) return null;
+
+            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connFluentData, new MySqlProvider()))
+            {
+                string sql = @"select * from user u where u.LoginName = @loginName and u.password = @password limit 0,1 ";
+                user = dbContext.Sql(sql).Parameter("loginName", user.LoginName)
+                                         .Parameter("password", MD5Util.GetMD5(user.Password))
+                                         .QuerySingle<UserVM>();
+
+                return user;
+            }
+        }
+        #endregion
+
     }
 }

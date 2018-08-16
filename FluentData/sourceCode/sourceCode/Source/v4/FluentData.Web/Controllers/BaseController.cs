@@ -32,5 +32,10 @@ namespace FluentData.Web.Controllers
 
             base.OnAuthorization(filterContext);
         }
+
+        public MyFormsAuthentication UserData
+        {
+            
+        }
     }
 }
