@@ -74,7 +74,7 @@ namespace FluentData.Web2.Controllers
             Session["UserID"] = user.ID;
             Session["UserName"] = user.LoginName;
             Session["RoleTypes"] = user.RoleTypes;
-
+           
             #endregion
 
             return Json(new

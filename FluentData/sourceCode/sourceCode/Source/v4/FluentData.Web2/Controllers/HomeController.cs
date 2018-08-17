@@ -14,6 +14,7 @@ namespace FluentData.Web2.Controllers
     public class HomeController : Controller
     {
         #region Index
+     
         public ActionResult Index()
         {
             PageVM<ArticleVM> data = new ArticleService().GetArticlePageList(new ArticleQuery());
