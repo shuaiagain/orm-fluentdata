@@ -156,6 +156,8 @@
     <Content Include="Content\plugins\webuploader\Uploader.swf" />
     <Content Include="Content\plugins\webuploader\webuploader.css" />
     <Content Include="Content\plugins\webuploader\webuploader.js" />
+    <None Include="Doc\说明.md" />
+    <Content Include="Doc\fluentdata.sql" />
     <Content Include="Global.asax" />
     <Content Include="Content\plugins\layer\mobile\README.md" />
     <None Include="Note\fluentdata.md" />
