@@ -17,6 +17,12 @@ namespace FluentData.Web2.Controllers
         #region Login
         public ActionResult Login()
         {
+
+            if(CurrentUser.UserID.HasValue)
+            {
+                return RedirectToAction("Index","Home");
+            }
+
             return View();
         }
         #endregion
