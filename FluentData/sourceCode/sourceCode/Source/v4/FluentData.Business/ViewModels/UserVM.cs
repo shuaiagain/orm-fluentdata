@@ -26,5 +26,10 @@ namespace FluentData.Business.ViewModels
         /// 注册时间
         /// </summary>
         public DateTime? InputTime { get; set; }
+
+        /// <summary>
+        /// 角色类型
+        /// </summary>
+        public string RoleTypes { get; set; }
     }
 }

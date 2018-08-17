@@ -1,0 +1,211 @@
+﻿@using FluentData.Business.ViewModels
+@using FluentData.Business.Utils
+@model PageVM<ArticleVM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var article = Model == null ? new PageVM<ArticleVM>() : Model;
+    var totalCount = article.TotalCount;
+}
+<style>
+
+</style>
+<div class="notice">
+    <div class="notice-content">
+        <div class="content-search">
+            <div class="search-left">
+                <input class="search-key" placeholder="请输入标题" /><a class="search-btn">搜索</a>
+            </div>
+            <div class="search-right">
+                <a class="add btn-add">添加</a>
+            </div>
+        </div>
+        <table id="articleTable" class="table-list" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="textCenter" style="width:25%;">标题</td>
+                    <td class="textCenter" style="width:25%;">内容</td>
+                    <td class="textCenter" style="width:8%;">附件</td>
+                    <td class="textCenter" style="width:8%;">发布日期</td>
+                    <td class="textCenter" style="width:8%;">评论总数</td>
+                    <td class="textCenter" style="width:8%;">赞总数</td>
+                    <td class="textCenter" style="width:8%;">踩总数</td>
+                    <td class="textCenter" style="width:150px;">操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Data != null && Model.Data.Count > 0)
+                {
+                    foreach (var item in Model.Data)
+                    {
+
+                        <tr data-id="@(item.ID)">
+                            <td class="textLeft ellipsis">
+                                <a title="@(item.Title)" target="_blank" href="@Url.Action("ViewNotice", "Home", new { noticeId = item.ID })">@(item.Title)</a>
+                            </td>
+                            <td class="textLeft ellipsis">
+                                <a title="@(item.Content)">@(item.Content)</a>
+                            </td>
+                            <td class="textCenter">
+                                @if (!string.IsNullOrEmpty(item.AttachmentUrl))
+                                {
+                                    <a class="iconfont icon-attachment" title="附件"></a>
+                                }
+                            </td>
+                            <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                            <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                            <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                            <td class="textCenter nowrap">@(item.InputTime.ToStringFormat("yyyy-MM-dd"))</td>
+                            <td class="textCenter nowrap">
+                                <a class="btn-operate">编辑</a><a class="btn-operate">删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="no-data">
+                        <td colspan="8">
+                            <span>暂无数据</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="list-page" style="width:100%;margin-top:15px;text-align:center;">
+            <div id="article-pagination" class="m-style" style="display:inline-block;"></div>
+        </div>
+    </div>
+</div>
+
+@section footer{
+    <script type="text/javascript">
+        $(function () {
+
+            var _totalCount = @totalCount,
+             _viewUrl = '@Url.Action("ViewNotice", "Home")',
+             _editUrl = '@Url.Action("Edit", "Home")',
+           _searchUrl = '@Url.Action("GetArticlePageList", "Home")',
+         _downloadUrl = '@(Url.Action("Download", "Home"))';
+
+            var pageOptions = {
+                isHide: true,
+                //mode:'fixed',
+                keepShowPN: false,
+                coping: true,
+                count: 2,
+                prevContent: '<',
+                nextContent: '>',
+                totalData: _totalCount,
+                showData: 8,
+                callback: function (api) {
+
+                    var params = {
+                        PageIndex: api.getCurrent(),
+                        StartTime: $('.startTime').val(),
+                        EndTime: $('.endTime').val()
+                    };
+
+                    getArticle(params, false)
+                }
+            };
+
+            //绑定分页
+            $('#article-pagination').pagination(pageOptions);
+            if (_totalCount == 0) $('#article-pagination').hide();
+
+            //enter 查询
+            $('.search-key').on('keydown', function (e) {
+
+                if (e.keyCode == 13) {
+                    $('.search-btn').trigger('click');
+                }
+            });
+
+            //搜索
+            $('.search-btn').on('click',function(e){
+
+                var params = {
+                    KeyWord:$.trim($('.search-key').val()),
+                    StartTime: $('.startTime').val(),
+                    EndTime: $('.endTime').val()
+                };
+
+                getArticle(params,true);
+            });
+
+            //获取查询数据
+            function getArticle(params, isBindPagination) {
+
+                $.post(_searchUrl, params, function (data) {
+
+                    var dataHtml = '';
+                    if (data.Code < 0) {
+                        dataHtml = '<tr class="no-data">' +
+                                        '<td colspan="8"><span>暂无数据</span></td>' +
+                                    '</tr>';
+
+                        //设置为0时显示的不对，暂时设为1是可以的
+                        pageOptions.totalData = 1;
+                    } else {
+
+                        var backData = data.Data,
+                                list = backData.Data;
+
+                        pageOptions.totalData = backData.TotalCount ? backData.TotalCount : 0;
+                        dataHtml = renderHtml(list);
+                    }
+
+                    $('#articleTable tbody').html(dataHtml);
+
+                    //绑定事件
+                    bindEvent();
+
+                    //点击'搜索'按钮需要重新绑定分页
+                    if (isBindPagination) {
+                        //重新绑定分页
+                        $('#article-pagination').pagination(pageOptions);
+                    }
+                });
+            }
+
+            //渲染table数据
+            function renderHtml(list) {
+
+                var tempHtml = '';
+                if (!list || list.length == 0) return tempHtml;
+
+                for (var i = 0; i < list.length; i++) {
+
+                    tempHtml += '<tr data-id="' + list[i].ID + '">' +
+                                  '<td class="textLeft ellipsis">' +
+                                      '<a title="' + list[i].Title + '" target="_blank" href="' + (_viewUrl + "?noticeId=" + list[i].ID) + '">' + list[i].Title + '</a>' +
+                                  '</td>' +
+                                  '<td class="textLeft ellipsis">' +
+                                      '<a title="' + list[i].Content + '" target="_blank" href="' + (_viewUrl + "?noticeId=" + list[i].ID) + '">' + list[i].Content + '</a>' +
+                                  '</td>' +
+                                  '<td class="textCenter">' +
+                                       '<a class="iconfont icon-attachment" title="附件" style="' + (list[i].AttachmentUrl ? "" : "display:none") + '"></a>' +
+                                  '</td>' +
+                                  '<td class="textCenter nowrap">' + list[i].UpdateTimeStr + '</td>' +
+                                  '<td class="textCenter nowrap">' + list[i].UpdateTimeStr + '</td>' +
+                                  '<td class="textCenter nowrap">' + list[i].UpdateTimeStr + '</td>'+
+                                  '<td class="textCenter nowrap">' + list[i].UpdateTimeStr + '</td>'+
+                                  '<td class="textCenter">' +
+                                        '<a class="btn-operate">编辑</a><a class="btn-operate">删除</a>'+
+                                  '</td>' +
+                                '</tr>';
+                }
+
+                return tempHtml;
+            }
+
+            function bindEvent(){
+
+            }
+
+        });
+    </script>
+}

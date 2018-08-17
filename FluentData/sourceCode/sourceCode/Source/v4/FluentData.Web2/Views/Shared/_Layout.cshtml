@@ -1,0 +1,48 @@
+﻿@using FluentData.Web2;
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>_layout</title>
+        <link rel="stylesheet" href="~/Content/css/common.css" />
+        <link rel="stylesheet" href="~/Content/css/base.css" />
+        <link rel="stylesheet" href="~/Content/plugins/pagination/pagination.css" />
+        @RenderSection("header", false)
+        <script type="text/javascript" src="~/Content/plugins/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/layer/layer.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/laydate/laydate.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/pagination/jquery.pagination.js"></script>
+
+    </head>
+    <body>
+        <div class="header">
+            <div class="toolbar">
+                @if (!CurrentUser.UserID.HasValue)
+                {
+                    <div class="login floatRight">
+                        <a class="login-btn">登录</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="userInfo floatRight">
+                        <a class="userInfo-name">李四四</a>
+                        <ul class="userInfo-other">
+                            <li><a href="@Url.Action("Logout", "Account")">退出</a></li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-wrap">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="footer"></div>
+        <script type="text/javascript" src="~/Content/js/layout/layout.js"></script>
+        @RenderSection("footer", false)
+    </body>
+</html>

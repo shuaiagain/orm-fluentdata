@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_layoutLogin.cshtml";
+}
+
+<style type="text/css">
+    .login .login-head {
+        background-color: #e4e4e4;
+    }
+
+        .login .login-head .head-title {
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            margin-left: 20px;
+        }
+
+    .login .login-content .content-name {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .login .login-content .user-name, .user-pwd {
+        padding-left: 5px;
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        width: 200px;
+        outline: none;
+    }
+
+    .login .login-content .content-pwd {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+</style>
+
+<div class="login">
+    <div class="login-head">
+        <span class="head-title">登录</span>
+    </div>
+    <div class="login-content">
+        <div class="content-name">
+            @*<span class="name-text">用户名</span>*@
+            <input type="text" class="user-name" name="username" autocomplete="off" placeholder="用户名" />
+        </div>
+        <div class="content-pwd">
+            @*<span>密&emsp;码</span>*@
+            <input type="password" class="user-pwd" name="password" autocomplete="off" placeholder="密码" />
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@(Url.Action("Register","Account"))" name="registerUrl" />
+<input type="hidden" value="@(Url.Action("Login","Account"))" na name="loginUrl" />
+<input type="hidden" value="@(Url.Action("Index", "Home"))" name="homeIndexUrl" />
+<script type="text/javascript">
+    $(function () {
+
+        var options = {
+            title: false,
+            type: 1,
+            skin: '',
+            area: ['360px', '200px'],
+            closeBtn: false,
+            shade: 0.3,
+            offset: ['100px'],
+            move: false,
+            content: $('.login'),
+            btn: ['登 录'],
+            yes: function (index, layero) {
+
+                var lgoinUrl = $('input[name="loginUrl"]').val();
+                var params = {
+                    LoginName: $('.user-name').val(),
+                    Password: $('.user-pwd').val()
+                };
+
+                if ($.trim(params.LoginName) == '') {
+                    alert('用户名不能为空');
+                    return false;
+                }
+
+                if ($.trim(params.Password) == '') {
+                    alert('密码不能为空');
+                    return false;
+                }
+
+                $.post(lgoinUrl, params, function (data) {
+
+                    if (data.Code == 200) {
+
+                        location.href = $('input[name="homeIndexUrl"]').val();
+                    } else {
+                        alert(data.Msg);
+                    }
+                });
+            },
+            success: function (layero, index) {
+                //按钮居中
+                layero.find('.layui-layer-btn').css('text-align', 'center');
+            }
+        };
+
+        layer.open(options);
+    });
+</script>

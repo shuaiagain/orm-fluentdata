@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Business", "Flue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knowledge", "Knowledge\Knowledge.csproj", "{C1B14737-AF74-4821-AA68-98FA092F9728}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Web2", "FluentData.Web2\FluentData.Web2.csproj", "{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,12 @@ Global
 		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1B14737-AF74-4821-AA68-98FA092F9728}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

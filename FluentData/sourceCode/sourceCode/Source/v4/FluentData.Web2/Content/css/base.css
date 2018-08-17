@@ -1,0 +1,120 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Microsoft YaHei","SimHei",sans-serif;
+    background: #f6f6f6;
+    min-width: 1200px;
+}
+
+.header {
+    height: 36px;
+    width: 100%;
+    color: #fff;
+    background: #000;
+}
+
+    .header .toolbar {
+        height: 36px;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+.toolbar .login {
+    height: 36px;
+    line-height: 36px;
+    margin-right: 20px;
+}
+
+    .toolbar .login .login-btn {
+        cursor: pointer;
+        color: #fff;
+    }
+
+.header .toolbar .userInfo {
+    position: relative;
+}
+
+    .header .toolbar .userInfo .userInfo-name {
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        color: #fff;
+        padding: 0px 10px;
+    }
+
+        .header .toolbar .userInfo .userInfo-name:hover {
+            background: #9a9a9a;
+            cursor: pointer;
+        }
+
+    .header .toolbar .userInfo .userInfo-other {
+        position: absolute;
+        background: #000;
+        /*display: inline-block;*/
+        list-style: none;
+        width: 62px;
+        text-align: center;
+        display: none;
+    }
+
+        .header .toolbar .userInfo .userInfo-other a {
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            width: 100%;
+            color: #fff;
+        }
+
+            .header .toolbar .userInfo .userInfo-other a:hover {
+                background: #9a9a9a;
+                cursor: pointer;
+            }
+
+.main .main-wrap {
+    width: 85%;
+    margin: 0 auto;
+}
+
+/*home页列表*/
+.content-search {
+    height: 46px;
+    line-height: 46px;
+}
+
+.notice .search-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.content-search .search-key {
+    display: inline-block;
+    height: 27px;
+    line-height: 26px;
+    width: 200px;
+    outline: none;
+    padding-left: 5px;
+    border: 1px solid #c8c8c8;
+    margin-right: 10px;
+}
+
+    .content-search .search-key:focus {
+        border: 1px solid #3faeef;
+    }
+
+.content-search .search-btn {
+    display: inline-block;
+    border: 1px solid #c8c8c8;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    padding: 0px 12px;
+    cursor: pointer;
+}
+
+    .content-search .search-btn:hover {
+        border: 1px solid #3faeef;
+    }

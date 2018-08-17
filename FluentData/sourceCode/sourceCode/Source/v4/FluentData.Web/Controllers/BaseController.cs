@@ -20,15 +20,6 @@ namespace FluentData.Web.Controllers
                 filterContext.Result = RedirectToAction("login", "account");
                 return;
             }
-
-            HttpCookie cookie = filterContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (cookie == null)
-            {
-                filterContext.Result = RedirectToAction("Login", "Account");
-                return;
-            }
-
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
         }
 
         public MyFormsAuthentication UserData

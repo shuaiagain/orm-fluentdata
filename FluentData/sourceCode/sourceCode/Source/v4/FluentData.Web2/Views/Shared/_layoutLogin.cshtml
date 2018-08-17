@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>login</title>
+    @RenderSection("header", false)
+    <script type="text/javascript" src="~/Content/plugins/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/layer/layer.js"></script>
+</head>
+<body>
+    <div class="main">
+        @RenderBody()
+    </div>
+    @RenderSection("footer", false)
+</body>
+</html>
