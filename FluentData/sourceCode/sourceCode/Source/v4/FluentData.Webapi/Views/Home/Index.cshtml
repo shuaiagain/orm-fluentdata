@@ -1,0 +1,42 @@
+﻿<div class="home">
+    <div class="home-bar">
+        <a class="update">列表</a>
+    </div>
+    <div class="list-show">
+        <div></div>
+    </div>
+    <input type="hidden" name="listUrl" value="@Url.Action("GetArticleList", "Article")" />
+    <input type="hidden" name="listsUrl" value="@Url.Action("GetArticleLists", "Article")" />
+    <script type="text/javascript" src="~/Content/plugins/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            var _getUrl = '/api' + $('input[name=listUrl]').val();
+            var _getListsUrl = '/api' + $('input[name=listsUrl]').val();
+
+            $.ajax({
+                type: 'get',
+                contentType: 'application/json;charset=utf-8',
+                url: _getUrl,
+                data: { KeyWord: 'test' },
+                success: function (data) {
+
+                    console.log(data);
+                }
+            });
+
+            $.ajax({
+                type: 'get',
+                contentType: 'application/json;charset=utf-8',
+                url: _getListsUrl,
+                data: { KeyWord: 'test' },
+                success: function (data) {
+
+                    console.log(data);
+                }
+            });
+
+        });
+    </script>
+</div>

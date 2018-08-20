@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knowledge", "Knowledge\Know
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Web2", "FluentData.Web2\FluentData.Web2.csproj", "{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Webapi", "FluentData.Webapi\FluentData.Webapi.csproj", "{CB5C2656-147E-4DC2-A804-BBEDBDC48063}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,12 @@ Global
 		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CB14D43-EEA8-41D2-9FA3-8B7A4EFAE450}.Release|x64.ActiveCfg = Release|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB5C2656-147E-4DC2-A804-BBEDBDC48063}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
