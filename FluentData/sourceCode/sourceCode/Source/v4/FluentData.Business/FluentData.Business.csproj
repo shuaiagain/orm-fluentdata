@@ -51,6 +51,7 @@
     <Compile Include="Query\ArticleQuery.cs" />
     <Compile Include="Query\PageQuery.cs" />
     <Compile Include="Utils\ConnectionUtil.cs" />
+    <Compile Include="Utils\EDcryptUtil.cs" />
     <Compile Include="Utils\MD5Util.cs" />
     <Compile Include="Utils\TypeExt.cs" />
     <Compile Include="ViewModels\ArticleVM.cs" />
