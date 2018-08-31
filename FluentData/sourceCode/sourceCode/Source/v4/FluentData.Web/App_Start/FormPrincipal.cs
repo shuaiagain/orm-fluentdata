@@ -49,7 +49,7 @@ namespace FluentData.Web
 
             if (userData == null) throw new ArgumentNullException("userData");
 
-            var data = JsonConvert.SerializeObject(userData);
+            string data = JsonConvert.SerializeObject(userData);
             DateTime expires = isRemember ? DateTime.Now.AddDays(30) : DateTime.Now.AddDays(1);
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, expires, isRemember, data);
