@@ -71,5 +71,10 @@ namespace FluentData.Business.Service
             }
         }
         #endregion
+
+        public void Test()
+        {
+            
+        }
     }
 }
