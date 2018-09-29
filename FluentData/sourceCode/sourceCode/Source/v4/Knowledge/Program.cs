@@ -7,6 +7,7 @@ using System.Threading;
 using System.Linq.Expressions;
 using System.Reflection;
 
+
 namespace Knowledge
 {
     /// <summary>
@@ -23,24 +24,30 @@ namespace Knowledge
         //有关 Lambda 表达式的详细信息，请参阅 Lambda 表达式。
         //创建匿名方法实际上是一种将代码块作为委托参数传递的方式 
         #endregion
+
         delegate void Del(int x);
         delegate int Dele(int x);
         delegate TResult Func<in T, out TResult>(T arg);
+
         static void Main(string[] args)
         {
             //匿名委托
-            Del de = delegate(int k) { Console.WriteLine(k); };
+            Del de = delegate (int k) { Console.WriteLine(k); };
             de(1);
 
-            Thread thread = new Thread(delegate()
+            #region 线程
+
+            Thread thread = new Thread(delegate ()
             {
                 Console.WriteLine("start");
             });
 
             thread.Start();
+            #endregion
 
+            #region 委托
             int i = 1;
-            Del del = delegate(int a)
+            Del del = delegate (int a)
             {
                 i++;
                 Console.WriteLine(i);
@@ -57,6 +64,7 @@ namespace Knowledge
             //lambda语句
             Del deOne = (aa) => { Console.WriteLine(aa); };
             deOne(6);
+            #endregion
 
             #region 表达式树
 
@@ -79,12 +87,12 @@ namespace Knowledge
             Console.WriteLine(fu(1, 2, 3, 4));
             #endregion
 
-
+            #region reflection
             Man man = new Man();
             Type manTypesTwo = man.GetType();
             Type manTypes = typeof(Man);
 
-            #region reflection
+
             MemberInfo[] members = manTypes.GetMembers();
             MethodInfo[] methods = manTypes.GetMethods();
             FieldInfo[] fields = manTypes.GetFields();
@@ -114,7 +122,28 @@ namespace Knowledge
             }
             #endregion
 
+            #region 算法
+            //斐波那契数列
+            Console.WriteLine("斐波那契数列：{0}", Algorithm.Reverse(7));
+            //n！的阶乘
+            Console.WriteLine("n！的阶乘：{0}", Algorithm.Factorial(5));
+            //冒泡排序
+            //TestOne.BubbleSort(new int[] { 5, 4, 3, 2, 1 });
+            //冒泡排序2
+            Algorithm.BubbleSort2(new int[] { 5, 4, 3, 2, 1 });
+            #endregion
+
+            #region 基础知识
+            BaseKonwledes.EqualDifference();
+            #endregion
+
+            int aaaa = 1, bbbb = 2;
+            Algorithm.TwoExchange(ref aaaa,ref bbbb);
+
+            Algorithm.FibonacciStack(7);
         }
+
+
 
     }
 }

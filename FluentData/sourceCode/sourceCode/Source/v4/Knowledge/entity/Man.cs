@@ -5,8 +5,19 @@ using System.Text;
 
 namespace Knowledge
 {
-    class Man
+    public class Man
     {
+
+        public Man()
+        {
+
+        }
+
+        public Man(string name)
+        {
+            this.Name = name;
+        }
+
         public string Hobbies;
 
         public string Name { get; set; }
