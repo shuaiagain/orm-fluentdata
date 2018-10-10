@@ -137,10 +137,75 @@ namespace Knowledge
             BaseKonwledes.EqualDifference();
             #endregion
 
+            #region 算法
             int aaaa = 1, bbbb = 2;
-            Algorithm.TwoExchange(ref aaaa,ref bbbb);
+            Algorithm.TwoExchange(ref aaaa, ref bbbb);
 
             Algorithm.FibonacciStack(7);
+            #endregion
+
+            #region 基础知识-继承
+            Parent ch = new Child();
+            ch.SetName("a");
+            ch.GetName();
+
+            Child cc = new Child();
+
+
+            Console.WriteLine("{{0}} = {0}", 1);
+
+            //int? ab;
+            //Console.WriteLine("ab:", ab.Value);
+
+            //Parent p;
+            //Console.WriteLine("Parent:",p);
+            #endregion
+
+            #region 基础-引用类型
+            Refference re = new Refference();
+            int numA = 1;
+            BaseKonwledes.Refference(re, numA);
+
+            Console.WriteLine("re.num :{0}", re.num);
+            Console.WriteLine("num :{0}", numA);
+
+
+            Refference ree = new Refference();
+            int numB = 1;
+            BaseKonwledes.Refference(ref ree, ref numB);
+
+            Console.WriteLine("re.num :{0}", ree.num);
+            Console.WriteLine("num :{0}", numB);
+
+            #endregion
+
+            #region 基础-ref-out
+
+            Refference myRef = new Refference();
+            BaseKonwledes.MyRefAsParameter(myRef);
+            Console.WriteLine("myRef :{0} ", myRef.num);
+
+            Refference myOut;
+            BaseKonwledes.MyOutAsParameter(out myOut);
+
+            Console.WriteLine("myOut.num :{0}", myOut.num);
+            #endregion
+
+            #region 参数数组
+            BaseKonwledes.ParamsArray();
+            BaseKonwledes.ParamsArray(1);
+            BaseKonwledes.ParamsArray(1, 2);
+
+            #endregion
+
+            #region 基础-反射
+
+            ReflectionSyntax.ExcuteMethod();
+            #endregion
+
+            #region 二分查找
+            Console.WriteLine(Algorithm.BinarySearch(new int[] { 1, 2, 3, 4, 5 }, 4));
+            #endregion
         }
 
 

@@ -113,7 +113,7 @@ namespace FluentData.Web.Controllers
             UserService userSV = new UserService();
 
             user.InputTime = DateTime.Now;
-            user = userSV.Login(user);
+            userSV.Login(user);
             if (user == null || !user.ID.HasValue)
             {
                 return Json(new

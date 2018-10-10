@@ -42,7 +42,7 @@ namespace Knowledge
             string strAA = "aa";
             string strBB = "aa";
 
-            object objAA=(object)strAA;
+            object objAA = (object)strAA;
             object objBB = (object)strBB;
 
             Console.WriteLine("objAA == objBB is {0} ", objAA == objBB);
@@ -58,14 +58,65 @@ namespace Knowledge
         }
         #endregion
 
-        public void OOP()
+        #region 引用类型和ref引用参数
+        public static void Refference(Refference re, int num)
         {
+            re.num += 1;
+            num += 1;
 
+            Console.WriteLine("re.num :{0} ", re.num);
+            Console.WriteLine("num :{0} ", num);
         }
 
-        public void Scope()
+        public static void Refference(ref Refference re, ref int num)
+        {
+            re.num += 1;
+            num += 1;
+
+            Console.WriteLine("re.num :{0} ", re.num);
+            Console.WriteLine("num :{0} ", num);
+        }
+
+        #endregion
+
+        #region 将引用类型对象作为值传递
+        public static void MyRefAsParameter(Refference re)
         {
 
+            Console.WriteLine();
+            re.num = 2;
+            Console.WriteLine("num :{0}", re.num);
+
+            re = new Refference();
+            re.num = 5;
+            Console.WriteLine("num:{0}", re.num);
         }
+        #endregion
+
+        #region 输出参数out
+        public static void MyOutAsParameter(out Refference re)
+        {
+            Console.WriteLine();
+
+            re = new Refference();
+            re.num = 5;
+            Console.WriteLine("out re.num:{0}", re.num);
+
+            //re = new Refference();
+
+            //Console.WriteLine("out re.num:{0}", re.num);
+        }
+        #endregion
+
+        #region 参数数组
+        public static void ParamsArray(params int[] vals)
+        {
+            Console.WriteLine();
+            for (int i = 0; i < vals.Length; i++)
+            {
+                Console.WriteLine("第{0}个值：{1} ", i + 1, vals[i]);
+            }
+        }
+        #endregion
     }
 }

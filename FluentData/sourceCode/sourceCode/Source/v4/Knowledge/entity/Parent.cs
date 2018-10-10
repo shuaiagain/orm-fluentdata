@@ -27,7 +27,10 @@ namespace Knowledge
 
         public virtual string GetName()
         {
-            return "parent_" + this.name;
+            var temp = "parent_" + this.name;
+
+            Console.WriteLine(temp);
+            return temp;
         }
     }
 }
