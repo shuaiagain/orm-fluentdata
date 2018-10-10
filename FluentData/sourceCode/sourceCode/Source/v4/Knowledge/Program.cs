@@ -204,11 +204,15 @@ namespace Knowledge
             #endregion
 
             #region 二分查找
+            Console.WriteLine("二分查找");
             Console.WriteLine(Algorithm.BinarySearch(new int[] { 1, 2, 3, 4, 5 }, 4));
+
+            Console.WriteLine(Algorithm.BinarySearch2(new int[] { 1, 2, 3, 4 }, 0, 3, 1));
+
+            Console.WriteLine(Algorithm.Binary3(new int[] { 1, 2, 3, 4 }, 0));
             #endregion
+
         }
-
-
 
     }
 }

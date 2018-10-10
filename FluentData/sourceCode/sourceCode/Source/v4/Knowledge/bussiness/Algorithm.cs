@@ -229,7 +229,48 @@ namespace Knowledge
             }
 
             return -1;
-        } 
+        }
+        #endregion
+
+        #region 二分查找2
+        public static int BinarySearch2(int[] arr, int low, int high, int key)
+        {
+
+            if (low > high) return -1;
+
+            int mid = (low + high) / 2; ;
+
+            if (key == arr[mid])
+                return mid;
+            else if (key < arr[mid])
+                return BinarySearch2(arr, low, mid - 1, key);
+            else if (key > arr[mid])
+                return BinarySearch2(arr, mid + 1, high, key);
+            else
+                return -1;
+        }
+        #endregion
+
+        #region 二分查找3
+        public static int Binary3(int[] arr, int key)
+        {
+
+            int low = 0, high = arr.Length - 1;
+
+            while (low <= high)
+            {
+
+                int mid = (low + high) / 2;
+                if (key == arr[mid])
+                    return mid;
+                else if (key < arr[mid])
+                    high = mid - 1;
+                else if (key > arr[mid])
+                    low = mid + 1;
+            }
+
+            return -1;
+        }
         #endregion
 
     }
