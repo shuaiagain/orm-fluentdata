@@ -57,6 +57,7 @@
     <Compile Include="entity\Parent.cs" />
     <Compile Include="entity\Refference.cs" />
     <Compile Include="bussiness\ReflectionSyntax.cs" />
+    <Compile Include="bussiness\GenericParadigm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="bussiness\Algorithm.cs" />

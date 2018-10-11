@@ -206,12 +206,23 @@ namespace Knowledge
             #region 二分查找
             Console.WriteLine("二分查找");
             Console.WriteLine(Algorithm.BinarySearch(new int[] { 1, 2, 3, 4, 5 }, 4));
-
             Console.WriteLine(Algorithm.BinarySearch2(new int[] { 1, 2, 3, 4 }, 0, 3, 1));
-
             Console.WriteLine(Algorithm.Binary3(new int[] { 1, 2, 3, 4 }, 0));
             #endregion
 
+            #region 泛型
+            GenericParadigm.MyStackGeneric();
+            //泛型方法、推断类型
+            GenericParadigm.GenericFunctions();
+            //泛型类的扩展
+            GenericParadigm.GenericClassExt();
+            //泛型结构
+            GenericParadigm.GenericStruct();
+            //泛型委托
+            GenericParadigm.GenericDelegate();
+            //泛型接口
+            GenericParadigm.GenericInterface();
+            #endregion
         }
 
     }
