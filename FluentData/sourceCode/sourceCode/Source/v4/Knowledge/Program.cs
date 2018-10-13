@@ -198,11 +198,6 @@ namespace Knowledge
 
             #endregion
 
-            #region 基础-反射
-
-            ReflectionSyntax.ExcuteMethod();
-            #endregion
-
             #region 二分查找
             Console.WriteLine("二分查找");
             Console.WriteLine(Algorithm.BinarySearch(new int[] { 1, 2, 3, 4, 5 }, 4));
@@ -222,6 +217,19 @@ namespace Knowledge
             GenericParadigm.GenericDelegate();
             //泛型接口
             GenericParadigm.GenericInterface();
+            #endregion
+
+            #region 基础-反射
+
+            ReflectionSyntax.ExcuteMethod();
+            #endregion
+
+            #region 反射
+            Reflection.getAllTypes();
+            #endregion
+
+            #region linq
+            Linq.LinqTest();
             #endregion
         }
 
