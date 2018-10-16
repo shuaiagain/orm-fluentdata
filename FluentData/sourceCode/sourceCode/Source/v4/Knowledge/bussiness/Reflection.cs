@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Linq.Expressions;
+
 using System.Reflection;
 namespace Knowledge
 {
@@ -40,7 +44,7 @@ namespace Knowledge
             MethodInfo[] methods = tpEasy.GetMethods();
             foreach (var item in fields)
             {
-                Console.Write(" field:{0} ",item.Name);
+                Console.Write(" field:{0} ", item.Name);
             }
 
             Console.WriteLine();
@@ -48,6 +52,7 @@ namespace Knowledge
             foreach (var item in properties)
             {
                 Console.Write(" property:{0} ", item.Name);
+                Console.WriteLine(" property-value:{0} ", item.GetValue(item, null));
             }
 
             Console.WriteLine();
