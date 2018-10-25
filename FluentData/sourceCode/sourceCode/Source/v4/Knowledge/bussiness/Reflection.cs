@@ -49,20 +49,20 @@ namespace Knowledge
 
             Console.WriteLine();
 
-            foreach (var item in properties)
-            {
-                Console.Write(" property:{0} ", item.Name);
-                Console.WriteLine(" property-value:{0} ", item.GetValue(item, null));
-            }
+            //foreach (var item in properties)
+            //{
+            //    Console.Write(" property:{0} ", item.Name);
+            //    Console.WriteLine(" property-value:{0} ", item.GetValue(item, null));
+            //}
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            foreach (var item in methods)
-            {
-                Console.Write(" method:{0} ", item.Name);
-            }
+            //foreach (var item in methods)
+            //{
+            //    Console.Write(" method:{0} ", item.Name);
+            //}
 
-            Console.WriteLine();
+            //Console.WriteLine();
         }
     }
 

@@ -231,6 +231,14 @@ namespace Knowledge
             #region linq
             Linq.LinqTest();
             #endregion
+
+            #region 算法
+            Algorithm.IsBracketEquals("1{2[3]4");
+            #endregion
+
+            Algorithm.RandomAZ();
+
+           BaseKonwledes.StringAndStringBuilder();
         }
 
     }

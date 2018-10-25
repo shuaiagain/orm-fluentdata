@@ -118,5 +118,28 @@ namespace Knowledge
             }
         }
         #endregion
+
+        #region 类型
+        public static void Types()
+        {
+            Console.WriteLine("{0}", typeof(int));
+        }
+        #endregion
+
+        #region StringAndStringBuilder  
+        public static void StringAndStringBuilder()
+        {
+            string aa = "12345", bb = aa;
+
+            aa = "123";
+            Console.WriteLine("aa = {0} ,bb = {1} ", aa, bb);
+
+            StringBuilder a = new StringBuilder("abcde"), b = a;
+
+            Console.WriteLine(" first a = {0},b = {1} ", a, b);
+            a = a.Append("f");
+            Console.WriteLine(" after a = {0}, b = {1} ", a, b);
+        } 
+        #endregion
     }
 }

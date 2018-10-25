@@ -273,5 +273,90 @@ namespace Knowledge
         }
         #endregion
 
+        #region 判断大括号左右是否相等
+        public static bool IsBracketEquals(string str)
+        {
+
+            Stack<char> stack = new Stack<char>();
+
+            for (int i = 0; i < str.Length; i++)
+            {
+
+                if (str[i] == '(' || str[i] == '{' || str[i] == '[')
+                    stack.Push(str[i]);
+                else if (str[i] == ')' || str[i] == '}' || str[i] == ']')
+                    stack.Pop();
+            }
+
+            Console.WriteLine(" bracket is equal:{0} ", stack.Count == 0);
+            if (stack.Count == 0) return true;
+
+            return false;
+        }
+        #endregion
+
+        #region 26个字母随机取4个然后排序
+
+        public static void RandomA_Z()
+        {
+            string[] arr = new string[4];
+
+            string[] sourceArr = new string[] {
+                "A","B","C","D","E","F","G",
+                "H","I","J","K","L","M","N",
+                "O","P","Q","R","S","T","U",
+                "V","W","X","Y","Z"};
+        }
+
+        public static void RandomAZ()
+        {
+            string str = "";
+            string[] strArr = new string[4];
+            string[] arr = new string[] {
+                "A","B","C","D","E","F","G",
+                "H","I","J","K","L","M","N",
+                "O","P","Q","R","S","T","U",
+                "V","W","X","Y","Z"
+            };
+
+            Random random = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                int temp = random.Next(0, 26);
+                str += arr[temp];
+                string tempVal = arr[temp];
+                strArr[i] = tempVal;
+            }
+
+            Array.Sort(strArr);
+            //翻转字符串
+            //Array.Reverse(strArr);
+
+            str = string.Join(",", strArr);
+
+            Console.WriteLine(" 字符串排序: ");
+            foreach (var item in strArr)
+            {
+                Console.Write(" {0}", item);
+            }
+
+            Console.WriteLine(" 字符串排序：{0} ", str);
+
+
+
+            //字符串、数组互相转换
+            string[] arrA = new string[] { };
+            string strB = "a,b,c,d";
+
+            var arrB = strB.Split(',');
+
+            foreach (var item in arrB)
+            {
+                Console.Write(" {0} ", item);
+            }
+            Console.WriteLine();
+        }
+        #endregion
+
     }
 }

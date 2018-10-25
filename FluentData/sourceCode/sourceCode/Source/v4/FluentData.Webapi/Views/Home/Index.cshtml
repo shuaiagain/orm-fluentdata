@@ -19,23 +19,23 @@
                 type: 'get',
                 contentType: 'application/json;charset=utf-8',
                 url: _getUrl,
-                data: { KeyWord: 'test' },
+                data: { KeyWord: '' },
                 success: function (data) {
 
                     console.log(data);
                 }
             });
 
-            $.ajax({
-                type: 'get',
-                contentType: 'application/json;charset=utf-8',
-                url: _getListsUrl,
-                data: { KeyWord: 'test' },
-                success: function (data) {
+            //$.ajax({
+            //    type: 'get',
+            //    contentType: 'application/json;charset=utf-8',
+            //    url: _getListsUrl,
+            //    data: { KeyWord: '' },
+            //    success: function (data) {
 
-                    console.log(data);
-                }
-            });
+            //        console.log(data);
+            //    }
+            //});
 
         });
     </script>
