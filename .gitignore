@@ -7,3 +7,9 @@ Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0
 /FluentData/sourceCode/sourceCode/Source/v4/packages/*
 /FluentData/sourceCode/sourceCode/Source/v4/FluentData.Web/Web.Release.config
 /FluentData/sourceCode/sourceCode/Source/v4/FluentData.Web/Web.Debug.config
+*.suo
+/FluentData/sourceCode/sourceCode/Source/v4/.vs/FluentData/DesignTimeBuild
+/FluentData/sourceCode/sourceCode/Source/v4/.vs/FluentData/v15/Server/sqlite3/db.lock
+/FluentData/sourceCode/sourceCode/Source/v4/.vs/FluentData/v15/Server/sqlite3/storage.ide
+/FluentData/sourceCode/sourceCode/Source/v4/.vs/FluentData/v15/Server/sqlite3/storage.ide-shm
+/FluentData/sourceCode/sourceCode/Source/v4/.vs/FluentData/v15/Server/sqlite3/storage.ide-wal
