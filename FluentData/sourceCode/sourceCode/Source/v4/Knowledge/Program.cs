@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Linq.Expressions;
 using System.Reflection;
-
+using Knowledge.bussiness;
 
 namespace Knowledge
 {
@@ -236,9 +236,19 @@ namespace Knowledge
             Algorithm.IsBracketEquals("1{2[3]4");
             #endregion
 
+            #region base
             Algorithm.RandomAZ();
 
-           BaseKonwledes.StringAndStringBuilder();
+            BaseKonwledes.StringAndStringBuilder();
+            #endregion
+
+            BaseOne.TestList();
+
+            #region 表达式树
+            ExpressionList.One();
+
+            ExpressionList.Two(); 
+            #endregion
         }
 
     }
