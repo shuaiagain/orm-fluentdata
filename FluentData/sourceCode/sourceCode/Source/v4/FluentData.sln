@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData", "FluentData\FluentData.csproj", "{B5AE821B-7728-49B3-9119-3BBC4C8E58E9}"
 EndProject
@@ -23,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Webapi", "FluentData.Webapi\FluentData.Webapi.csproj", "{CB5C2656-147E-4DC2-A804-BBEDBDC48063}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentData.Web3", "FluentData.Web3\FluentData.Web3.csproj", "{6109D160-9525-4E49-B5F7-AA9AA3B10EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeOne", "KnowledgeOne\KnowledgeOne.csproj", "{78F12AA3-228B-4C1B-BD98-465B2EB67634}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,9 +80,20 @@ Global
 		{6109D160-9525-4E49-B5F7-AA9AA3B10EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6109D160-9525-4E49-B5F7-AA9AA3B10EAE}.Release|x64.ActiveCfg = Release|Any CPU
 		{6109D160-9525-4E49-B5F7-AA9AA3B10EAE}.Release|x64.Build.0 = Release|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Debug|x64.Build.0 = Debug|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Release|x64.ActiveCfg = Release|Any CPU
+		{78F12AA3-228B-4C1B-BD98-465B2EB67634}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05632D09-D8A4-47AA-9D66-415D76818BCC}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = FluentData.vsmdi

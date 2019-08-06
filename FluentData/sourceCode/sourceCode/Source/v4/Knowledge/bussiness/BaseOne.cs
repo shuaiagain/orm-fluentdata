@@ -17,7 +17,24 @@ namespace Knowledge.bussiness
             if (test.Count == 0)
                 Console.WriteLine("count==0");
 
-           
+
+        }
+
+        public List<string> GetList(List<string> list)
+        {
+            return list;
+        }
+
+        public List<string> GetListOne(List<string> list)
+        {
+            List<string> one = new List<string>();
+
+            list.ForEach(f =>
+            {
+                one.Add(f);
+            });
+
+            return one;
         }
     }
 }

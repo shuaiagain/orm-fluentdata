@@ -31,9 +31,14 @@ namespace Knowledge
 
         static void Main(string[] args)
         {
-            //匿名委托
+            #region 枚举器
+            Enumerator.Test();
+            #endregion
+
+            #region 匿名委托
             Del de = delegate (int k) { Console.WriteLine(k); };
-            de(1);
+            de(1); 
+            #endregion
 
             #region 线程
 
@@ -242,14 +247,40 @@ namespace Knowledge
             BaseKonwledes.StringAndStringBuilder();
             #endregion
 
-            BaseOne.TestList();
+            #region 集合
+            BaseOne.TestList(); 
+            #endregion
 
             #region 表达式树
             ExpressionList.One();
 
-            ExpressionList.Two(); 
+            ExpressionList.Two();
+            #endregion
+
+            #region 引用类型
+            List<string> list = new List<string>() { "1", "2", "3" };
+
+            BaseOne baseOne = new BaseOne();
+            List<string> one = baseOne.GetListOne(list);
+            one.Add("4");
+
+            List<string> two = baseOne.GetListOne(list);
+
+            string temp = string.Empty;
+            one.ForEach(f =>
+            {
+                temp += f + " ";
+            });
+
+            Console.WriteLine("one: {0}", temp);
+
+            temp = string.Empty;
+            two.ForEach(f =>
+            {
+                temp += f + " ";
+            });
+            Console.WriteLine("two: {0}", temp);
             #endregion
         }
-
     }
 }
