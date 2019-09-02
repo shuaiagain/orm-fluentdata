@@ -14,14 +14,23 @@ namespace KnowledgeOne
             MyContext context = new MyContext();
 
             #region 枚举器、枚举类型
-            //context.Enumerator.Test();
-            //context.Enumerator.GetEnumeratorSelfDefination();
+
+            context.Enumerator.Test();
+            context.Enumerator.GetEnumeratorSelfDefination();
+
             #endregion
 
             #region 迭代器
-            //context.Iterator.Test();
-            //context.Iterator.TestOne();
+
+            context.Iterator.Test();
+            context.Iterator.TestOne();
+
+            #endregion
+
+            #region lock锁
+
             context.LockEX.Test();
+
             #endregion
 
         }
