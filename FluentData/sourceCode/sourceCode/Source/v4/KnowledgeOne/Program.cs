@@ -19,8 +19,9 @@ namespace KnowledgeOne
             #endregion
 
             #region 迭代器
-            context.Iterator.Test();
-            context.Iterator.TestOne();
+            //context.Iterator.Test();
+            //context.Iterator.TestOne();
+            context.LockEX.Test();
             #endregion
 
         }

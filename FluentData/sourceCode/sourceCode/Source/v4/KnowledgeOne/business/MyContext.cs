@@ -12,6 +12,7 @@ namespace KnowledgeOne.business
         {
             this.Enumerator = new Enumerator();
             this.Iterator = new Iterator();
+            this.LockEX = new LockEX();
         }
 
         /// <summary>
@@ -23,5 +24,10 @@ namespace KnowledgeOne.business
         /// 迭代器
         /// </summary>
         public Iterator Iterator { get; set; }
+
+        /// <summary>
+        /// lock
+        /// </summary>
+        public LockEX LockEX { get; set; }
     }
 }
